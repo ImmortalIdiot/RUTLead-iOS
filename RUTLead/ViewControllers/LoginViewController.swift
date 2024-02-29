@@ -146,6 +146,9 @@ final class LoginViewController: UIViewController {
     
     private func setUp() {
         view.backgroundColor = UIColor(named: "mainBackAuth")
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
     }
     
     private func addSubviews() {
@@ -264,6 +267,10 @@ final class LoginViewController: UIViewController {
     
     @objc private func loginTapped() {
         print("loginTapped")
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+       view.endEditing(true)
     }
     
 }

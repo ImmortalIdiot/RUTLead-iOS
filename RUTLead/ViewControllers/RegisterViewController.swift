@@ -164,10 +164,20 @@ final class RegisterViewController: UIViewController {
         setUp()
         addSubviews()
         setUpConstraints()
+        setDelegates()
     }
     
     private func setUp() {
         view.backgroundColor = UIColor(named: "mainBackAuth")
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private func setDelegates() {
+        studNumberTextField.delegate = self
+        passwordTextField.delegate = self
+        passwordTwoTextField.delegate = self
     }
     
     private func addSubviews() {
@@ -294,6 +304,10 @@ final class RegisterViewController: UIViewController {
     
     @objc private func loginTapped() {
         print("loginTapped")
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+       view.endEditing(true)
     }
     
 }
