@@ -142,15 +142,15 @@ final class RegisterViewController: UIViewController {
         let fullRange = NSRange(location: 0, length: attributedString.length)
         let rangeToUnderline = (attributedString.string as NSString).range(of: "Войдите")
 
-        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 14), range: fullRange)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: fullRange)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
         attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth"), range: rangeToUnderline)
-        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 14), range: rangeToUnderline)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 16), range: rangeToUnderline)
 
         button.setAttributedTitle(attributedString, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(named: "backAuth")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         
         return button
@@ -214,7 +214,7 @@ final class RegisterViewController: UIViewController {
         background.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(titleImageView.snp.bottom).offset(50)
-            make.height.equalTo(465)
+            make.height.equalTo(479)
             make.leading.trailing.equalToSuperview().inset(26)
             
         }
@@ -250,12 +250,12 @@ final class RegisterViewController: UIViewController {
             make.center.equalToSuperview()
             make.top.equalTo(passwordTwoTextField).inset(99)
             make.height.equalTo(49)
-            make.width.equalTo(200)
+            make.width.equalTo(220)
         }
         
         loginButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(registerButton.snp.bottom).offset(18)
+            make.top.equalTo(registerButton.snp.bottom).offset(27)
         }
         
     }
@@ -303,7 +303,7 @@ final class RegisterViewController: UIViewController {
     }
     
     @objc private func loginTapped() {
-        print("loginTapped")
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {

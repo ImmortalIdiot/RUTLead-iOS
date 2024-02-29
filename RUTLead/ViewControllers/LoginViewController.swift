@@ -119,15 +119,15 @@ final class LoginViewController: UIViewController {
         let fullRange = NSRange(location: 0, length: attributedString.length)
         let rangeToUnderline = (attributedString.string as NSString).range(of: "Зарегистрируйтесь")
 
-        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 18), range: fullRange)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: fullRange)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
         attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth"), range: rangeToUnderline)
-        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 18), range: rangeToUnderline)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 16), range: rangeToUnderline)
 
         button.setAttributedTitle(attributedString, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(named: "backAuth")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(registerTapped), for: .touchUpInside)
         
         return button
@@ -261,12 +261,12 @@ final class LoginViewController: UIViewController {
         registerButton.backgroundColor = UIColor(named: "backAuth")
     }
     
-    @objc private func registerTapped() {
-        print("registerTapped")
-    }
-    
     @objc private func loginTapped() {
         print("loginTapped")
+    }
+    
+    @objc private func registerTapped() {
+        navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
