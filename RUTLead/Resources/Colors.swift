@@ -15,4 +15,6 @@ struct Colors {
     
     static let placeHolder = UIColor(red: 135 / 255, green: 135 / 255, blue: 135 / 255, alpha: 1)
     
+    static let blueTabBar = UIColor(red: 43 / 255, green: 94 / 255, blue: 189 / 255, alpha: 1)
+    
 }

@@ -262,7 +262,7 @@ final class LoginViewController: UIViewController {
     }
     
     @objc private func loginTapped() {
-        print("loginTapped")
+        navigationController?.pushViewController(TabBarViewController(), animated: true)
     }
     
     @objc private func registerTapped() {
