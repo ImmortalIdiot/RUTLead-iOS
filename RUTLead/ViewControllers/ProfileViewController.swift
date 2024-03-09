@@ -12,11 +12,11 @@ class ProfileViewController: UIViewController {
 
     // MARK: Properties
     
-    private var label: UILabel = {
+    private var mainTitle: UILabel = {
         let label = UILabel()
-        label.text = "Here will be profile..."
-        label.textColor = .black
-        label.font = UIFont(name: "Arial", size: 20)
+        label.text = "Профиль"
+        label.textColor = Colors.placeHolder
+        label.font = .systemFont(ofSize: 32, weight: .bold)
         
         return label
     }()
@@ -36,12 +36,13 @@ class ProfileViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(label)
+        view.addSubview(mainTitle)
     }
     
     private func setUpConstraints() {
-        label.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+        mainTitle.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.leading.equalToSuperview().offset(24)
         }
     }
 

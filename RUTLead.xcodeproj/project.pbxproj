@@ -19,6 +19,7 @@
 		8EC1E47E2B87C84800FAE89F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC1E47D2B87C84800FAE89F /* LoginViewController.swift */; };
 		8EC1E4832B87C84900FAE89F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC1E4822B87C84900FAE89F /* Assets.xcassets */; };
 		8EC1E4862B87C84900FAE89F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EC1E4842B87C84900FAE89F /* LaunchScreen.storyboard */; };
+		8ECCB2732B9CC343000371BB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8ECCB2722B9CC343000371BB /* FSCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E8B66022B88DEF200B7BD58 /* SnapKit in Frameworks */,
+				8ECCB2732B9CC343000371BB /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +128,7 @@
 			name = RUTLead;
 			packageProductDependencies = (
 				8E8B66012B88DEF200B7BD58 /* SnapKit */,
+				8ECCB2722B9CC343000371BB /* FSCalendar */,
 			);
 			productName = RUTLead;
 			productReference = 8EC1E4762B87C84800FAE89F /* RUTLead.app */;
@@ -157,6 +160,7 @@
 			mainGroup = 8EC1E46D2B87C84800FAE89F;
 			packageReferences = (
 				8E8B66002B88DEF200B7BD58 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				8ECCB2712B9CC343000371BB /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 8EC1E4772B87C84800FAE89F /* Products */;
 			projectDirPath = "";
@@ -425,6 +429,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		8ECCB2712B9CC343000371BB /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -432,6 +444,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8E8B66002B88DEF200B7BD58 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		8ECCB2722B9CC343000371BB /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8ECCB2712B9CC343000371BB /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

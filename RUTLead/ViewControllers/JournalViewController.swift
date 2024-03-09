@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import FSCalendar
 
 final class JournalViewController: UIViewController {
     
@@ -16,7 +17,7 @@ final class JournalViewController: UIViewController {
         let label = UILabel()
         label.text = "Журнал"
         label.textColor = Colors.placeHolder
-        label.font = .systemFont(ofSize: 25, weight: .bold)
+        label.font = .systemFont(ofSize: 32, weight: .bold)
         
         return label
     }()
@@ -41,8 +42,8 @@ final class JournalViewController: UIViewController {
     
     private func setUpConstraints() {
         mainTitle.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
-            make.leading.equalToSuperview().offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.leading.equalToSuperview().offset(24)
         }
         
         
