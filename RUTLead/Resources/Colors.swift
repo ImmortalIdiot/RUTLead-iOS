@@ -17,4 +17,6 @@ struct Colors {
     
     static let blueTabBar = UIColor(red: 43 / 255, green: 94 / 255, blue: 189 / 255, alpha: 1)
     
+    static let red = UIColor(red: 255 / 255, green: 83 / 255, blue: 84 / 255, alpha: 1)
+    
 }

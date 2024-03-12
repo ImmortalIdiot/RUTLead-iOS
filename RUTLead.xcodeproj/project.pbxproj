@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E086D0D2B9F799C00CC1D8B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */; };
 		8E36A8112B8FA09B001DC479 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E36A8102B8FA09B001DC479 /* Helpers.swift */; };
 		8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */; };
 		8E7D25C52B903D150042FF61 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C42B903D150042FF61 /* JournalViewController.swift */; };
@@ -23,13 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8E36A8102B8FA09B001DC479 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		8E7D25C42B903D150042FF61 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		8E7D25C62B903D4B0042FF61 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8E8B66042B88E33100B7BD58 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		8E8B66062B8CFC1400B7BD58 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		8EC1E4762B87C84800FAE89F /* RUTLead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RUTLead.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EC1E4762B87C84800FAE89F /* РУТлид.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "РУТлид.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC1E4792B87C84800FAE89F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EC1E47B2B87C84800FAE89F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8EC1E47D2B87C84800FAE89F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E086D0B2B9F797800CC1D8B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8E8B65FE2B88DE8B00B7BD58 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +105,7 @@
 		8EC1E4772B87C84800FAE89F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8EC1E4762B87C84800FAE89F /* RUTLead.app */,
+				8EC1E4762B87C84800FAE89F /* РУТлид.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +115,7 @@
 			children = (
 				8E8B65FE2B88DE8B00B7BD58 /* Application */,
 				8E8B66032B88DF9500B7BD58 /* Resources */,
+				8E086D0B2B9F797800CC1D8B /* Models */,
 				8E8B65FF2B88DE9700B7BD58 /* ViewControllers */,
 			);
 			path = RUTLead;
@@ -131,7 +142,7 @@
 				8ECCB2722B9CC343000371BB /* FSCalendar */,
 			);
 			productName = RUTLead;
-			productReference = 8EC1E4762B87C84800FAE89F /* RUTLead.app */;
+			productReference = 8EC1E4762B87C84800FAE89F /* РУТлид.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -195,6 +206,7 @@
 				8E8B66052B88E33100B7BD58 /* Colors.swift in Sources */,
 				8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */,
 				8E7D25C72B903D4B0042FF61 /* ProfileViewController.swift in Sources */,
+				8E086D0D2B9F799C00CC1D8B /* ThemeManager.swift in Sources */,
 				8EC1E47A2B87C84800FAE89F /* AppDelegate.swift in Sources */,
 				8EC1E47C2B87C84800FAE89F /* SceneDelegate.swift in Sources */,
 			);
@@ -354,7 +366,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelkivo.RUTLead;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "РУТлид";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -386,7 +398,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.michaelkivo.RUTLead;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "РУТлид";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

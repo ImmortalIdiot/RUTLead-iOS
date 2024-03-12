@@ -8,7 +8,7 @@
 import UIKit
 
 struct Helpers {
-    static let cornerRadius: CGFloat = 14
+    static let cornerRadius: CGFloat = 12
     
     static let title: String = "РУТлид"
     

@@ -65,6 +65,15 @@ final class JournalViewController: UIViewController {
         
         return calendar
     }()
+    
+    private var disciplinesTitle: UILabel = {
+        let label = UILabel()
+        label.text = "Диспциплины"
+        label.textColor = Colors.placeHolder
+        label.font = .systemFont(ofSize: 24, weight: .bold)
+        
+        return label
+    }()
         
     // MARK: Methods
     
@@ -87,6 +96,7 @@ final class JournalViewController: UIViewController {
         view.addSubview(mainTitle)
         view.addSubview(calendar)
         calendar.addSubview(arrow)
+        view.addSubview(disciplinesTitle)
     }
     
     private func setUpConstraints() {
@@ -107,6 +117,11 @@ final class JournalViewController: UIViewController {
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().inset(15)
             make.top.equalToSuperview().offset(69)
+        }
+        
+        disciplinesTitle.snp.makeConstraints { make in
+            make.top.equalTo(calendar.snp.bottom).offset(15)
+            make.leading.equalToSuperview().offset(18)
         }
     }
     
