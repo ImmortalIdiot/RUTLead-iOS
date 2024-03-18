@@ -10,7 +10,7 @@ import SnapKit
 
 final class LoginViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     private let titleImageView: UIImageView = {
         let image = UIImageView()
@@ -83,7 +83,6 @@ final class LoginViewController: UIViewController {
         password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         password.layer.borderWidth = 3
         password.backgroundColor = UIColor(named: "textFieldAuth")
-//        password.delegate = self
         password.textColor = .black
         password.attributedPlaceholder = NSAttributedString(
             string: "Пароль",
@@ -133,7 +132,25 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    // MARK: Methods
+    private let forgotPassButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        let attributedString = NSMutableAttributedString(string: "Забыли пароль?")
+        let rangeToUnderline = (attributedString.string as NSString).range(of: "Забыли пароль?")
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth"), range: rangeToUnderline)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16, weight: .bold), range: rangeToUnderline)
+        
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(named: "backAuth")
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(forgotPassTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,7 +179,7 @@ final class LoginViewController: UIViewController {
             background.addSubview(content)
         }
         
-        [registerButton, loginButton].forEach { content in
+        [registerButton, loginButton, forgotPassButton].forEach { content in
             background.addSubview(content)
         }
     }
@@ -212,14 +229,19 @@ final class LoginViewController: UIViewController {
         
         loginButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.top.equalTo(passwordTextField).offset(108)
-            make.height.equalTo(49)
+            make.top.equalTo(passwordTextField).offset(90)
+            make.height.equalTo(55)
             make.width.equalTo(180)
         }
         
         registerButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(loginButton.snp.bottom).offset(41)
+            make.top.equalTo(loginButton.snp.bottom).offset(20)
+        }
+        
+        forgotPassButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(registerButton.snp.bottom).offset(5)
         }
         
     }
@@ -269,8 +291,12 @@ final class LoginViewController: UIViewController {
         navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+    @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
        view.endEditing(true)
+    }
+    
+    @objc private func forgotPassTapped() {
+        print("forgotPassTapped")
     }
     
 }

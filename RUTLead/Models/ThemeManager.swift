@@ -19,15 +19,6 @@ enum Theme {
             return .black
         }
     }
-    
-    var textColor: UIColor {
-        switch self {
-        case .light:
-            return .black
-        case .dark:
-            return .white
-        }
-    }
 }
 
 class ThemeManager {
@@ -45,7 +36,5 @@ class ThemeManager {
         UIApplication.shared.windows.forEach { window in
             window.backgroundColor = currentTheme.backgroundColor
         }
-        
-        UILabel.appearance().textColor = currentTheme.textColor
     }
 }

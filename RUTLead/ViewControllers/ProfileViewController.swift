@@ -52,7 +52,7 @@ final class ProfileViewController: UIViewController {
         let fio = UILabel()
         fio.text = "Иванов Александр Дмитриевич"
         fio.font = .systemFont(ofSize: 17, weight: .bold)
-        fio.textColor = .white
+        fio.textColor = UIColor(named: "mainBackAuth")
         fio.numberOfLines = 0
         
         return fio
@@ -71,11 +71,12 @@ final class ProfileViewController: UIViewController {
         let auto = UIButton(type: .custom)
         auto.backgroundColor = Colors.blueTabBar
         auto.tag = 0
-        auto.layer.cornerRadius = 18
+        auto.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        auto.layer.cornerRadius = auto.frame.height / 2
+        auto.clipsToBounds = true
         auto.setTitle("Авто", for: .normal)
         auto.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         auto.setTitleColor(.white, for: .normal)
-//        auto.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         auto.addTarget(self, action: #selector(autoThemeButtonTapped), for: .touchUpInside)
         
         return auto
@@ -88,8 +89,9 @@ final class ProfileViewController: UIViewController {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         let largeBoldDoc = UIImage(systemName: "sun.max.fill", withConfiguration: largeConfig)
         
-//        light.frame = CGRect(x: 0, y: 0, width: 80, height: 50)
-        light.layer.cornerRadius = 18
+        light.frame = CGRect(x: 0, y: 0, width: 56, height: 20)
+        light.layer.cornerRadius = light.frame.height / 2
+        light.clipsToBounds = true
         light.setImage(largeBoldDoc, for: .normal)
         light.addTarget(self, action: #selector(lightThemeButtonTapped), for: .touchUpInside)
         light.imageView?.tintColor = .white
@@ -104,8 +106,9 @@ final class ProfileViewController: UIViewController {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         let largeBoldDoc = UIImage(systemName: "moon.fill", withConfiguration: largeConfig)
         
-        dark.layer.cornerRadius = 18
-//        dark.frame = CGRect(x: 0, y: 0, width: 80, height: 50)
+        dark.frame = CGRect(x: 0, y: 0, width: 70, height: 10)
+        dark.layer.cornerRadius = dark.frame.height / 2
+        dark.clipsToBounds = true
         dark.setImage(largeBoldDoc, for: .normal)
         dark.imageView?.tintColor = .white
         dark.addTarget(self, action: #selector(darkThemeButtonTapped), for: .touchUpInside)
@@ -165,6 +168,8 @@ final class ProfileViewController: UIViewController {
     
     private func setUp() {
         view.backgroundColor = .white
+        
+        ThemeManager.shared.applyTheme()
     }
     
     private func addSubviews() {
@@ -311,14 +316,24 @@ final class ProfileViewController: UIViewController {
                 deselectButton(but)
             }
         }
+        
+        if Helpers.isLightTheme() {
+            ThemeManager.shared.currentTheme = .dark
+        } else {
+            ThemeManager.shared.currentTheme = .light
+        }
     }
     
     @objc private func lightThemeButtonTapped(_ sender: UIButton) {
         autoThemeButtonTapped(sender)
+        
+        ThemeManager.shared.currentTheme = .light
     }
     
     @objc private func darkThemeButtonTapped(_ sender: UIButton) {
         autoThemeButtonTapped(sender)
+        
+        ThemeManager.shared.currentTheme = .dark
     }
     
     @objc private func signOutButtonTapped(_ sender: UIButton) {
