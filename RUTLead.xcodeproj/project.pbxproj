@@ -12,6 +12,7 @@
 		8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */; };
 		8E7D25C52B903D150042FF61 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C42B903D150042FF61 /* JournalViewController.swift */; };
 		8E7D25C72B903D4B0042FF61 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C62B903D4B0042FF61 /* ProfileViewController.swift */; };
+		8E87C3D22BAB5651009A819A /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E87C3D12BAB5651009A819A /* ResetPasswordViewController.swift */; };
 		8E8B66022B88DEF200B7BD58 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8E8B66012B88DEF200B7BD58 /* SnapKit */; };
 		8E8B66052B88E33100B7BD58 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8B66042B88E33100B7BD58 /* Colors.swift */; };
 		8E8B66072B8CFC1400B7BD58 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8B66062B8CFC1400B7BD58 /* RegisterViewController.swift */; };
@@ -30,6 +31,7 @@
 		8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		8E7D25C42B903D150042FF61 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		8E7D25C62B903D4B0042FF61 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8E87C3D12BAB5651009A819A /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		8E8B66042B88E33100B7BD58 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		8E8B66062B8CFC1400B7BD58 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8EC1E4762B87C84800FAE89F /* РУТлид.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "РУТлид.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				8EC1E47D2B87C84800FAE89F /* LoginViewController.swift */,
 				8E8B66062B8CFC1400B7BD58 /* RegisterViewController.swift */,
 				8EFDF5D52BA8BF6E0019C16A /* SecondRegisterViewController.swift */,
+				8E87C3D12BAB5651009A819A /* ResetPasswordViewController.swift */,
 				8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */,
 				8E7D25C42B903D150042FF61 /* JournalViewController.swift */,
 				8E7D25C62B903D4B0042FF61 /* ProfileViewController.swift */,
@@ -205,6 +208,7 @@
 				8E7D25C52B903D150042FF61 /* JournalViewController.swift in Sources */,
 				8EC1E47E2B87C84800FAE89F /* LoginViewController.swift in Sources */,
 				8E36A8112B8FA09B001DC479 /* Helpers.swift in Sources */,
+				8E87C3D22BAB5651009A819A /* ResetPasswordViewController.swift in Sources */,
 				8E8B66072B8CFC1400B7BD58 /* RegisterViewController.swift in Sources */,
 				8E8B66052B88E33100B7BD58 /* Colors.swift in Sources */,
 				8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */,

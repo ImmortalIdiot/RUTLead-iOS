@@ -59,7 +59,7 @@ final class SecondRegisterViewController: UIViewController {
         studNumber.keyboardType = .default
         studNumber.returnKeyType = .go
         studNumber.layer.cornerRadius = Helpers.cornerRadius
-        studNumber.textColor = .white
+        studNumber.textColor = UIColor(named: "textFieldText")
         studNumber.backgroundColor = UIColor(named: "textFieldAuth")
         studNumber.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         studNumber.layer.borderWidth = 3
@@ -82,7 +82,7 @@ final class SecondRegisterViewController: UIViewController {
         password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         password.layer.borderWidth = 3
         password.backgroundColor = UIColor(named: "textFieldAuth")
-        password.textColor = .white
+        password.textColor = UIColor(named: "textFieldText")
         password.attributedPlaceholder = NSAttributedString(
             string: "Группа (УВП-212)",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
@@ -248,12 +248,14 @@ final class SecondRegisterViewController: UIViewController {
             string: "Номер студенческого билета",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
+        fioTextField.textColor = UIColor(named: "textFieldText")
         groupTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         groupTextField.backgroundColor = UIColor(named: "textFieldAuth")
         groupTextField.attributedPlaceholder = NSAttributedString(
             string: "Пароль",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
+        groupTextField.textColor = UIColor(named: "textFieldText")
         enterButton.backgroundColor = UIColor(named: "buttonAuth")
         enterButton.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
         loginButton.backgroundColor = UIColor(named: "backAuth")

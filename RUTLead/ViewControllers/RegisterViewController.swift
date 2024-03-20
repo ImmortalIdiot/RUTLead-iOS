@@ -59,7 +59,7 @@ final class RegisterViewController: UIViewController {
         studNumber.keyboardType = .decimalPad
         studNumber.returnKeyType = .go
         studNumber.layer.cornerRadius = Helpers.cornerRadius
-        studNumber.textColor = .white
+        studNumber.textColor = UIColor(named: "textFieldText")
         studNumber.backgroundColor = UIColor(named: "textFieldAuth")
         studNumber.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         studNumber.layer.borderWidth = 3
@@ -83,7 +83,7 @@ final class RegisterViewController: UIViewController {
         email.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         email.layer.borderWidth = 3
         email.backgroundColor = UIColor(named: "textFieldAuth")
-        email.textColor = .white
+        email.textColor = UIColor(named: "textFieldText")
         email.attributedPlaceholder = NSAttributedString(
             string: "Электронная почта",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
@@ -104,7 +104,7 @@ final class RegisterViewController: UIViewController {
         password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         password.layer.borderWidth = 3
         password.isSecureTextEntry = true
-        password.textColor = .white
+        password.textColor = UIColor(named: "textFieldText")
         password.attributedPlaceholder = NSAttributedString(
             string: "Пароль",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
@@ -292,12 +292,15 @@ final class RegisterViewController: UIViewController {
             string: "Номер студенческого билета",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
+        studNumberTextField.textColor = UIColor(named: "textFieldText")
+        emailTextField.textColor = UIColor(named: "textFieldText")
         emailTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         emailTextField.backgroundColor = UIColor(named: "textFieldAuth")
         emailTextField.attributedPlaceholder = NSAttributedString(
             string: "Пароль",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
+        passwordTextField.textColor = UIColor(named: "textFieldText")
         passwordTextField.backgroundColor = UIColor(named: "textFieldAuth")
         passwordTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         passwordTextField.attributedPlaceholder = NSAttributedString(
