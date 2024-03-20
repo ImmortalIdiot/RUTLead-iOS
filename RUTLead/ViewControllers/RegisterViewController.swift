@@ -59,7 +59,7 @@ final class RegisterViewController: UIViewController {
         studNumber.keyboardType = .decimalPad
         studNumber.returnKeyType = .go
         studNumber.layer.cornerRadius = Helpers.cornerRadius
-        studNumber.textColor = .black
+        studNumber.textColor = .white
         studNumber.backgroundColor = UIColor(named: "textFieldAuth")
         studNumber.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         studNumber.layer.borderWidth = 3
@@ -83,7 +83,7 @@ final class RegisterViewController: UIViewController {
         email.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         email.layer.borderWidth = 3
         email.backgroundColor = UIColor(named: "textFieldAuth")
-        email.textColor = .black
+        email.textColor = .white
         email.attributedPlaceholder = NSAttributedString(
             string: "Электронная почта",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
@@ -104,7 +104,7 @@ final class RegisterViewController: UIViewController {
         password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         password.layer.borderWidth = 3
         password.isSecureTextEntry = true
-        password.textColor = .black
+        password.textColor = .white
         password.attributedPlaceholder = NSAttributedString(
             string: "Пароль",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
@@ -113,6 +113,20 @@ final class RegisterViewController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: password.frame.height))
         password.leftView = paddingView
         password.leftViewMode = .always
+        
+        let eye = UIButton(type: .custom)
+        eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
+        eye.setImage(.init(systemName: "eye.fill"), for: .selected)
+        eye.imageView?.tintColor = Colors.blueTabBar
+        eye.addTarget(self, action: #selector(eyeTapped), for: .touchUpInside)
+        eye.frame = CGRect(x: 0, y: 0, width: 45, height: 20)
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 46, height: 20))
+        eye.center = view.center
+        view.addSubview(eye)
+        
+        password.rightView = view
+        password.rightViewMode = .always
         
         return password
     }()
@@ -296,7 +310,7 @@ final class RegisterViewController: UIViewController {
     }
     
     @objc private func registerTapped() {
-        print("registerTapped")
+        navigationController?.pushViewController(SecondRegisterViewController(), animated: true)
     }
     
     @objc private func loginTapped() {
@@ -305,6 +319,11 @@ final class RegisterViewController: UIViewController {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
        view.endEditing(true)
+    }
+    
+    @objc private func eyeTapped(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        passwordTextField.isSecureTextEntry.toggle()
     }
     
 }

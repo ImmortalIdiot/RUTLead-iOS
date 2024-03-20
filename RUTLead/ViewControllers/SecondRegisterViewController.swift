@@ -1,14 +1,14 @@
 //
-//  LoginViewController.swift
+//  SecondRegisterViewController.swift
 //  RUTLead
 //
-//  Created by Michael Kivo on 22/02/2024.
+//  Created by Michael Kivo on 18/03/2024.
 //
 
 import UIKit
 import SnapKit
 
-final class LoginViewController: UIViewController {
+final class SecondRegisterViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -49,14 +49,14 @@ final class LoginViewController: UIViewController {
         let auth = UILabel()
         auth.textColor = UIColor(named: "titleAuth")
         auth.font = .systemFont(ofSize: 28, weight: .bold)
-        auth.text = "Авторизация"
+        auth.text = "Регистрация"
         
         return auth
     }()
     
-    private let studNumberTextField: UITextField = {
+    private let fioTextField: UITextField = {
         let studNumber = UITextField()
-        studNumber.keyboardType = .decimalPad
+        studNumber.keyboardType = .default
         studNumber.returnKeyType = .go
         studNumber.layer.cornerRadius = Helpers.cornerRadius
         studNumber.textColor = .white
@@ -64,7 +64,7 @@ final class LoginViewController: UIViewController {
         studNumber.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         studNumber.layer.borderWidth = 3
         studNumber.attributedPlaceholder = NSAttributedString(
-            string: "Номер студенческого билета",
+            string: "ФИО",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
         
@@ -75,17 +75,16 @@ final class LoginViewController: UIViewController {
         return studNumber
     }()
     
-    private let passwordTextField: UITextField = {
+    private let groupTextField: UITextField = {
         let password = UITextField()
         password.returnKeyType = .go
         password.layer.cornerRadius = Helpers.cornerRadius
-        password.isSecureTextEntry = true
         password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         password.layer.borderWidth = 3
         password.backgroundColor = UIColor(named: "textFieldAuth")
         password.textColor = .white
         password.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
+            string: "Группа (УВП-212)",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
         
@@ -93,24 +92,10 @@ final class LoginViewController: UIViewController {
         password.leftView = paddingView
         password.leftViewMode = .always
         
-        let eye = UIButton(type: .custom)
-        eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
-        eye.setImage(.init(systemName: "eye.fill"), for: .selected)
-        eye.imageView?.tintColor = Colors.blueTabBar
-        eye.addTarget(self, action: #selector(eyeTapped), for: .touchUpInside)
-        eye.frame = CGRect(x: 0, y: 0, width: 45, height: 20)
-        
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 46, height: 20))
-        eye.center = view.center
-        view.addSubview(eye)
-        
-        password.rightView = view
-        password.rightViewMode = .always
-        
         return password
     }()
 
-    private let loginButton: UIButton = {
+    private let enterButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(named: "buttonAuth")
         button.layer.cornerRadius = Helpers.cornerRadius
@@ -119,18 +104,18 @@ final class LoginViewController: UIViewController {
         button.setTitle("Войти", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 23, weight: .bold)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(enterTapped), for: .touchUpInside)
         
         return button
     }()
     
-    private let registerButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Нет аккаунта? Зарегистрируйтесь", for: .normal)
+        button.setTitle("Есть аккаунт? Войдите", for: .normal)
 
-        let attributedString = NSMutableAttributedString(string: "Нет аккаунта? Зарегистрируйтесь")
+        let attributedString = NSMutableAttributedString(string: "Есть аккаунт? Войдите")
         let fullRange = NSRange(location: 0, length: attributedString.length)
-        let rangeToUnderline = (attributedString.string as NSString).range(of: "Зарегистрируйтесь")
+        let rangeToUnderline = (attributedString.string as NSString).range(of: "Войдите")
 
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: fullRange)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
@@ -141,25 +126,7 @@ final class LoginViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(named: "backAuth")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(registerTapped), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    private let forgotPassButton: UIButton = {
-        let button = UIButton(type: .system)
-        
-        let attributedString = NSMutableAttributedString(string: "Забыли пароль?")
-        let rangeToUnderline = (attributedString.string as NSString).range(of: "Забыли пароль?")
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
-        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth"), range: rangeToUnderline)
-        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16, weight: .bold), range: rangeToUnderline)
-        
-        button.setAttributedTitle(attributedString, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "backAuth")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(forgotPassTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         
         return button
     }()
@@ -189,11 +156,11 @@ final class LoginViewController: UIViewController {
         
         background.addSubview(authLabel)
         
-        [studNumberTextField, passwordTextField].forEach { content in
+        [fioTextField, groupTextField].forEach { content in
             background.addSubview(content)
         }
         
-        [registerButton, loginButton, forgotPassButton].forEach { content in
+        [enterButton, loginButton].forEach { content in
             background.addSubview(content)
         }
     }
@@ -216,7 +183,7 @@ final class LoginViewController: UIViewController {
         background.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(titleImageView.snp.bottom).offset(45)
-            make.height.equalTo(430)
+            make.height.equalTo(400)
             make.leading.trailing.equalToSuperview().inset(26)
             
         }
@@ -227,42 +194,37 @@ final class LoginViewController: UIViewController {
             make.height.equalTo(30)
         }
         
-        studNumberTextField.snp.makeConstraints { make in
+        fioTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(authLabel).offset(65)
             make.height.equalTo(60)
             make.width.equalTo(280)
         }
         
-        passwordTextField.snp.makeConstraints { make in
+        groupTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(studNumberTextField).offset(85)
+            make.top.equalTo(fioTextField).offset(85)
             make.height.equalTo(60)
             make.width.equalTo(280)
         }
         
-        loginButton.snp.makeConstraints { make in
+        enterButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.top.equalTo(passwordTextField).offset(90)
+            make.top.equalTo(groupTextField).offset(90)
             make.height.equalTo(55)
             make.width.equalTo(180)
         }
         
-        registerButton.snp.makeConstraints { make in
+        loginButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(loginButton.snp.bottom).offset(20)
-        }
-        
-        forgotPassButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(registerButton.snp.bottom).offset(5)
+            make.top.equalTo(enterButton.snp.bottom).offset(20)
         }
         
     }
     
     private func setDelegates() {
-        studNumberTextField.delegate = self
-        passwordTextField.delegate = self
+        fioTextField.delegate = self
+        groupTextField.delegate = self
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -280,47 +242,38 @@ final class LoginViewController: UIViewController {
         background.backgroundColor = UIColor(named: "backAuth")
         background.layer.borderColor = UIColor(named: "backBorderAuth")?.cgColor
         authLabel.textColor = UIColor(named: "titleAuth")
-        studNumberTextField.backgroundColor = UIColor(named: "textFieldAuth")
-        studNumberTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        studNumberTextField.attributedPlaceholder = NSAttributedString(
+        fioTextField.backgroundColor = UIColor(named: "textFieldAuth")
+        fioTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
+        fioTextField.attributedPlaceholder = NSAttributedString(
             string: "Номер студенческого билета",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
-        passwordTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        passwordTextField.backgroundColor = UIColor(named: "textFieldAuth")
-        passwordTextField.attributedPlaceholder = NSAttributedString(
+        groupTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
+        groupTextField.backgroundColor = UIColor(named: "textFieldAuth")
+        groupTextField.attributedPlaceholder = NSAttributedString(
             string: "Пароль",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
         )
-        loginButton.backgroundColor = UIColor(named: "buttonAuth")
-        loginButton.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
-        registerButton.backgroundColor = UIColor(named: "backAuth")
+        enterButton.backgroundColor = UIColor(named: "buttonAuth")
+        enterButton.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
+        loginButton.backgroundColor = UIColor(named: "backAuth")
     }
     
     @objc private func loginTapped() {
-        navigationController?.pushViewController(TabBarViewController(), animated: true)
+        navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
-    @objc private func registerTapped() {
-        navigationController?.pushViewController(RegisterViewController(), animated: true)
+    @objc private func enterTapped() {
+        navigationController?.pushViewController(TabBarViewController(), animated: true)
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
        view.endEditing(true)
     }
     
-    @objc private func forgotPassTapped() {
-        print("forgotPassTapped")
-    }
-    
-    @objc private func eyeTapped(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        passwordTextField.isSecureTextEntry.toggle()
-    }
-    
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension SecondRegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

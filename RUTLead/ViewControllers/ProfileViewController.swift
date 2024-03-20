@@ -343,6 +343,8 @@ final class ProfileViewController: UIViewController {
             print("yes")
             
             // TODO: Sign out
+            
+            self.navigationController?.pushViewController(LoginViewController(), animated: true)
         }
         
         let noAction = UIAlertAction(title: "Нет", style: .cancel) { result in
