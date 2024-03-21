@@ -70,7 +70,7 @@ final class RegisterViewController: UIViewController {
     
     private let passwordTextField: CustomTextField = {
         let password = CustomTextField(placeHolder: "Пароль")
-
+        
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
         eye.setImage(.init(systemName: "eye.fill"), for: .selected)

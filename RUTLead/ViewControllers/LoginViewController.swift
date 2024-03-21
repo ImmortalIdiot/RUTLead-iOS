@@ -12,6 +12,19 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
+    let label = UILabel()
+    
+    func setUpLabel() {
+        label.text = "Номер студенческого билета"
+        label.textColor = UIColor(named: "placeHolderAuth")
+        label.anchorPoint = CGPoint(x: 0, y: 0)
+        studNumberTextField.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.leading.equalTo(studNumberTextField).offset(-110)
+            make.centerY.equalTo(studNumberTextField).offset(-10)
+        }
+    }
+    
     private let titleImageView: UIImageView = {
         let image = UIImageView()
         
@@ -55,7 +68,7 @@ final class LoginViewController: UIViewController {
     }()
     
     private let studNumberTextField: CustomTextField = {
-        let studNumber = CustomTextField(placeHolder: "Номер студенческого билета")
+        let studNumber = CustomTextField(placeHolder: "")
         studNumber.keyboardType = .decimalPad
         
         return studNumber
@@ -145,6 +158,7 @@ final class LoginViewController: UIViewController {
         addSubviews()
         setUpConstraints()
         setDelegates()
+        setUpLabel()
     }
     
     private func setUp() {
@@ -168,6 +182,8 @@ final class LoginViewController: UIViewController {
         [registerButton, loginButton, forgotPassButton].forEach { content in
             background.addSubview(content)
         }
+        
+        studNumberTextField.addSubview(label)
     }
     
     private func setUpConstraints() {
@@ -242,7 +258,7 @@ final class LoginViewController: UIViewController {
     private func updateTheme() {
         print("Phone theme has changed.")
         let isLightTheme = Helpers.isLightTheme()
-
+// todo:
         titleImageView.image = isLightTheme ? .light : .dark
         titleLabel.textColor = UIColor(named: "RUTLead")
         background.backgroundColor = UIColor(named: "backAuth")
@@ -294,5 +310,28 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            self.label.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            self.label.snp.updateConstraints { make in
+                make.leading.equalTo(self.studNumberTextField).offset(-110)
+                make.centerY.equalTo(self.studNumberTextField).offset(-24)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            if !self.studNumberTextField.hasText {
+                self.label.transform = .identity
+                self.label.snp.updateConstraints { make in
+                    make.leading.equalTo(self.studNumberTextField).offset(-110)
+                    make.centerY.equalTo(self.studNumberTextField).offset(-10)
+                }
+            }
+        }
     }
 }

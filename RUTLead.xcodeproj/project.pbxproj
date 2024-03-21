@@ -98,7 +98,6 @@
 				8EC1E4872B87C84900FAE89F /* Info.plist */,
 				8E8B66042B88E33100B7BD58 /* Colors.swift */,
 				8E36A8102B8FA09B001DC479 /* Helpers.swift */,
-				8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -125,9 +124,18 @@
 				8E8B65FE2B88DE8B00B7BD58 /* Application */,
 				8E8B66032B88DF9500B7BD58 /* Resources */,
 				8E086D0B2B9F797800CC1D8B /* Models */,
+				8EC2ABEF2BACC5C1006198F8 /* Custom */,
 				8E8B65FF2B88DE9700B7BD58 /* ViewControllers */,
 			);
 			path = RUTLead;
+			sourceTree = "<group>";
+		};
+		8EC2ABEF2BACC5C1006198F8 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

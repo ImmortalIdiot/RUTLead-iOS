@@ -22,17 +22,21 @@ final class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpTextField(_ placeHolder: String) {
+    private func setUpTextField(_ placeHolder: String?) {
+        
         returnKeyType = .go
         layer.cornerRadius = Helpers.cornerRadius
         textColor = UIColor(named: "textFieldText")
         backgroundColor = UIColor(named: "textFieldAuth")
         layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         layer.borderWidth = 3
-        attributedPlaceholder = NSAttributedString(
-            string: placeHolder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")!]
-        )
+        
+        if let placeHolder = placeHolder {
+            attributedPlaceholder = NSAttributedString(
+                string: placeHolder,
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")!]
+            )
+        }
         
         heightAnchor.constraint(equalToConstant: 60).isActive = true
         widthAnchor.constraint(equalToConstant: 280).isActive = true

@@ -280,7 +280,7 @@ final class ResetPasswordViewController: UIViewController {
     
     @objc private func changeTapped() {
         // TODO: add reset pass logic
-        print("changeTapped")
+        print(#function)
     }
     
     @objc private func loginTapped() {
