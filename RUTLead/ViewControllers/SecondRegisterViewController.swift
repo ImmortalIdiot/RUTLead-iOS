@@ -55,44 +55,11 @@ final class SecondRegisterViewController: UIViewController {
     }()
     
     private let fioTextField: UITextField = {
-        let studNumber = UITextField()
-        studNumber.keyboardType = .default
-        studNumber.returnKeyType = .go
-        studNumber.layer.cornerRadius = Helpers.cornerRadius
-        studNumber.textColor = UIColor(named: "textFieldText")
-        studNumber.backgroundColor = UIColor(named: "textFieldAuth")
-        studNumber.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        studNumber.layer.borderWidth = 3
-        studNumber.attributedPlaceholder = NSAttributedString(
-            string: "ФИО",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: studNumber.frame.height))
-        studNumber.leftView = paddingView
-        studNumber.leftViewMode = .always
-        
-        return studNumber
+        CustomTextField(placeHolder: "ФИО")
     }()
     
     private let groupTextField: UITextField = {
-        let password = UITextField()
-        password.returnKeyType = .go
-        password.layer.cornerRadius = Helpers.cornerRadius
-        password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        password.layer.borderWidth = 3
-        password.backgroundColor = UIColor(named: "textFieldAuth")
-        password.textColor = UIColor(named: "textFieldText")
-        password.attributedPlaceholder = NSAttributedString(
-            string: "Группа (УВП-212)",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: password.frame.height))
-        password.leftView = paddingView
-        password.leftViewMode = .always
-        
-        return password
+        CustomTextField(placeHolder: "Группа (УВП-212)")
     }()
 
     private let enterButton: UIButton = {
@@ -197,15 +164,11 @@ final class SecondRegisterViewController: UIViewController {
         fioTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(authLabel).offset(65)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         groupTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(fioTextField).offset(85)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         enterButton.snp.makeConstraints { make in

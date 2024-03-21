@@ -54,43 +54,16 @@ final class ResetPasswordViewController: UIViewController {
         return auth
     }()
     
-    private let emailTextField: UITextField = {
-        let email = UITextField()
+    private let emailTextField: CustomTextField = {
+        let email = CustomTextField(placeHolder: "Электронная почта")
         email.keyboardType = .emailAddress
-        email.returnKeyType = .go
-        email.layer.cornerRadius = Helpers.cornerRadius
-        email.textColor = UIColor(named: "textFieldText")
-        email.backgroundColor = UIColor(named: "textFieldAuth")
-        email.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        email.layer.borderWidth = 3
-        email.attributedPlaceholder = NSAttributedString(
-            string: "Электронная почта",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        email.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: email.frame.height))
-        email.leftViewMode = .always
         
         return email
     }()
     
     private let passwordTextField: UITextField = {
-        let password = UITextField()
-        password.returnKeyType = .go
-        password.backgroundColor = UIColor(named: "textFieldAuth")
-        password.layer.cornerRadius = Helpers.cornerRadius
-        password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        password.layer.borderWidth = 3
+        let password = CustomTextField(placeHolder: "Пароль")
         password.isSecureTextEntry = true
-        password.textColor = UIColor(named: "textFieldText")
-        password.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: password.frame.height))
-        password.leftView = paddingView
-        password.leftViewMode = .always
         
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
@@ -110,22 +83,8 @@ final class ResetPasswordViewController: UIViewController {
     }()
     
     private let passwordAgainTextField: UITextField = {
-        let password = UITextField()
-        password.returnKeyType = .go
-        password.backgroundColor = UIColor(named: "textFieldAuth")
-        password.layer.cornerRadius = Helpers.cornerRadius
-        password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        password.layer.borderWidth = 3
+        let password = CustomTextField(placeHolder: "Пароль повторно")
         password.isSecureTextEntry = true
-        password.textColor = UIColor(named: "textFieldText")
-        password.attributedPlaceholder = NSAttributedString(
-            string: "Пароль повторно",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: password.frame.height))
-        password.leftView = paddingView
-        password.leftViewMode = .always
         
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
@@ -168,7 +127,7 @@ final class ResetPasswordViewController: UIViewController {
 
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: fullRange)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
-        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth"), range: rangeToUnderline)
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth")!, range: rangeToUnderline)
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 16), range: rangeToUnderline)
 
         button.setAttributedTitle(attributedString, for: .normal)
@@ -252,22 +211,16 @@ final class ResetPasswordViewController: UIViewController {
         emailTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(authLabel).inset(65)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         passwordTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(emailTextField).inset(85)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         passwordAgainTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(passwordTextField).inset(85)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         changeButton.snp.makeConstraints { make in

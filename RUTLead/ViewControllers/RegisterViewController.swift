@@ -55,65 +55,22 @@ final class RegisterViewController: UIViewController {
     }()
     
     private let studNumberTextField: UITextField = {
-        let studNumber = UITextField()
+        let studNumber = CustomTextField(placeHolder: "Номер студенческого билета")
         studNumber.keyboardType = .decimalPad
-        studNumber.returnKeyType = .go
-        studNumber.layer.cornerRadius = Helpers.cornerRadius
-        studNumber.textColor = UIColor(named: "textFieldText")
-        studNumber.backgroundColor = UIColor(named: "textFieldAuth")
-        studNumber.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        studNumber.layer.borderWidth = 3
-        studNumber.attributedPlaceholder = NSAttributedString(
-            string: "Номер студенческого билета",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: studNumber.frame.height))
-        studNumber.leftView = paddingView
-        studNumber.leftViewMode = .always
         
         return studNumber
     }()
     
-    private let emailTextField: UITextField = {
-        let email = UITextField()
-        email.returnKeyType = .go
+    private let emailTextField: CustomTextField = {
+        let email = CustomTextField(placeHolder: "Электронная почта")
         email.keyboardType = .emailAddress
-        email.layer.cornerRadius = Helpers.cornerRadius
-        email.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        email.layer.borderWidth = 3
-        email.backgroundColor = UIColor(named: "textFieldAuth")
-        email.textColor = UIColor(named: "textFieldText")
-        email.attributedPlaceholder = NSAttributedString(
-            string: "Электронная почта",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: email.frame.height))
-        email.leftView = paddingView
-        email.leftViewMode = .always
         
         return email
     }()
     
-    private let passwordTextField: UITextField = {
-        let password = UITextField()
-        password.returnKeyType = .go
-        password.backgroundColor = UIColor(named: "textFieldAuth")
-        password.layer.cornerRadius = Helpers.cornerRadius
-        password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        password.layer.borderWidth = 3
-        password.isSecureTextEntry = true
-        password.textColor = UIColor(named: "textFieldText")
-        password.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: password.frame.height))
-        password.leftView = paddingView
-        password.leftViewMode = .always
-        
+    private let passwordTextField: CustomTextField = {
+        let password = CustomTextField(placeHolder: "Пароль")
+
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
         eye.setImage(.init(systemName: "eye.fill"), for: .selected)
@@ -239,22 +196,16 @@ final class RegisterViewController: UIViewController {
         studNumberTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(authLabel).inset(65)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         emailTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(studNumberTextField).inset(85)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         passwordTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(emailTextField).inset(85)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         registerButton.snp.makeConstraints { make in

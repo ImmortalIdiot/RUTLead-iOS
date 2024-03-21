@@ -21,7 +21,7 @@ enum Theme {
     }
 }
 
-class ThemeManager {
+final class ThemeManager {
     static let shared = ThemeManager()
     
     var currentTheme: Theme = .light {

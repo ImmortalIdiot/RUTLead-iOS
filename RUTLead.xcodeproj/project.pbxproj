@@ -22,6 +22,7 @@
 		8EC1E4832B87C84900FAE89F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC1E4822B87C84900FAE89F /* Assets.xcassets */; };
 		8EC1E4862B87C84900FAE89F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EC1E4842B87C84900FAE89F /* LaunchScreen.storyboard */; };
 		8ECCB2732B9CC343000371BB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8ECCB2722B9CC343000371BB /* FSCalendar */; };
+		8EE8B2CD2BACBA35003A4F8F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */; };
 		8EFDF5D62BA8BF6E0019C16A /* SecondRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFDF5D52BA8BF6E0019C16A /* SecondRegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		8EC1E4822B87C84900FAE89F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EC1E4852B87C84900FAE89F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EC1E4872B87C84900FAE89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		8EFDF5D52BA8BF6E0019C16A /* SecondRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 				8EC1E4872B87C84900FAE89F /* Info.plist */,
 				8E8B66042B88E33100B7BD58 /* Colors.swift */,
 				8E36A8102B8FA09B001DC479 /* Helpers.swift */,
+				8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EE8B2CD2BACBA35003A4F8F /* CustomTextField.swift in Sources */,
 				8E7D25C52B903D150042FF61 /* JournalViewController.swift in Sources */,
 				8EC1E47E2B87C84800FAE89F /* LoginViewController.swift in Sources */,
 				8E36A8112B8FA09B001DC479 /* Helpers.swift in Sources */,

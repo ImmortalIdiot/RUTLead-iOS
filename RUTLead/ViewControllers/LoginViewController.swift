@@ -54,44 +54,16 @@ final class LoginViewController: UIViewController {
         return auth
     }()
     
-    private let studNumberTextField: UITextField = {
-        let studNumber = UITextField()
+    private let studNumberTextField: CustomTextField = {
+        let studNumber = CustomTextField(placeHolder: "Номер студенческого билета")
         studNumber.keyboardType = .decimalPad
-        studNumber.returnKeyType = .go
-        studNumber.layer.cornerRadius = Helpers.cornerRadius
-        studNumber.textColor = UIColor(named: "textFieldText")
-        studNumber.backgroundColor = UIColor(named: "textFieldAuth")
-        studNumber.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        studNumber.layer.borderWidth = 3
-        studNumber.attributedPlaceholder = NSAttributedString(
-            string: "Номер студенческого билета",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: studNumber.frame.height))
-        studNumber.leftView = paddingView
-        studNumber.leftViewMode = .always
         
         return studNumber
     }()
     
-    private let passwordTextField: UITextField = {
-        let password = UITextField()
-        password.returnKeyType = .go
-        password.layer.cornerRadius = Helpers.cornerRadius
+    private let passwordTextField: CustomTextField = {
+        let password = CustomTextField(placeHolder: "Пароль")
         password.isSecureTextEntry = true
-        password.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        password.layer.borderWidth = 3
-        password.backgroundColor = UIColor(named: "textFieldAuth")
-        password.textColor = UIColor(named: "textFieldText")
-        password.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 11, height: password.frame.height))
-        password.leftView = paddingView
-        password.leftViewMode = .always
         
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
@@ -230,15 +202,11 @@ final class LoginViewController: UIViewController {
         studNumberTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(authLabel).offset(65)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         passwordTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(studNumberTextField).offset(85)
-            make.height.equalTo(60)
-            make.width.equalTo(280)
         }
         
         loginButton.snp.makeConstraints { make in
