@@ -10,7 +10,7 @@ import SnapKit
 
 final class ResetPasswordViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     private let titleImageView: UIImageView = {
         let image = UIImageView()
@@ -55,15 +55,21 @@ final class ResetPasswordViewController: UIViewController {
     }()
     
     private let emailTextField: CustomTextField = {
-        let email = CustomTextField(placeHolder: "Электронная почта")
+        let email = CustomTextField(placeHolder: "")
         email.keyboardType = .emailAddress
+        email.tag = 0
         
         return email
     }()
     
+    private let emailPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Электронная почта")
+    }()
+    
     private let passwordTextField: UITextField = {
-        let password = CustomTextField(placeHolder: "Пароль")
+        let password = CustomTextField(placeHolder: "")
         password.isSecureTextEntry = true
+        password.tag = 1
         
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
@@ -82,9 +88,14 @@ final class ResetPasswordViewController: UIViewController {
         return password
     }()
     
+    private let passPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Пароль")
+    }()
+    
     private let passwordAgainTextField: UITextField = {
-        let password = CustomTextField(placeHolder: "Пароль повторно")
+        let password = CustomTextField(placeHolder: "")
         password.isSecureTextEntry = true
+        password.tag = 2
         
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
@@ -101,6 +112,10 @@ final class ResetPasswordViewController: UIViewController {
         password.rightViewMode = .always
         
         return password
+    }()
+    
+    private let passAgainPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Пароль повторно")
     }()
     
     private let changeButton: UIButton = {
@@ -139,7 +154,7 @@ final class ResetPasswordViewController: UIViewController {
         return button
     }()
     
-    // MARK: Methods
+    // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,6 +192,10 @@ final class ResetPasswordViewController: UIViewController {
         [changeButton, loginButton].forEach { content in
             background.addSubview(content)
         }
+        
+        emailTextField.addSubview(emailPlaceholder)
+        passwordTextField.addSubview(passPlaceholder)
+        passwordAgainTextField.addSubview(passAgainPlaceholder)
     }
     
     private func setUpConstraints() {
@@ -235,6 +254,21 @@ final class ResetPasswordViewController: UIViewController {
             make.top.equalTo(changeButton.snp.bottom).offset(12)
         }
         
+        emailPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-67)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
+        passPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-19)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
+        passAgainPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-59)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -254,25 +288,13 @@ final class ResetPasswordViewController: UIViewController {
         authLabel.textColor = UIColor(named: "titleAuth")
         emailTextField.backgroundColor = UIColor(named: "textFieldAuth")
         emailTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        emailTextField.attributedPlaceholder = NSAttributedString(
-            string: "Номер студенческого билета",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         emailTextField.textColor = UIColor(named: "textFieldText")
         passwordTextField.textColor = UIColor(named: "textFieldText")
         passwordTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         passwordTextField.backgroundColor = UIColor(named: "textFieldAuth")
-        passwordTextField.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         passwordAgainTextField.textColor = UIColor(named: "textFieldText")
         passwordAgainTextField.backgroundColor = UIColor(named: "textFieldAuth")
         passwordAgainTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        passwordAgainTextField.attributedPlaceholder = NSAttributedString(
-            string: "Пароль повторно",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         changeButton.backgroundColor = UIColor(named: "buttonAuth")
         changeButton.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
         loginButton.backgroundColor = UIColor(named: "backAuth")
@@ -301,6 +323,23 @@ final class ResetPasswordViewController: UIViewController {
         passwordAgainTextField.isSecureTextEntry.toggle()
     }
     
+    private func startAnimate(placeholder: UILabel, tf: UITextField, forNum: Int) {
+        placeholder.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(forNum)
+            make.centerY.equalTo(tf).offset(-23)
+        }
+        self.view.layoutIfNeeded()
+    }
+    
+    private func stopAnimate(placeholder: UILabel, tf: UITextField, forNum: Int) {
+        placeholder.transform = .identity
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(forNum)
+            make.centerY.equalTo(tf).offset(-10)
+        }
+    }
+    
 }
 
 extension ResetPasswordViewController: UITextFieldDelegate {
@@ -308,5 +347,30 @@ extension ResetPasswordViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            if textField.tag == 0 {
+                self.startAnimate(placeholder: self.emailPlaceholder, tf: self.emailTextField, forNum: -67)
+            } else if textField.tag == 1 {
+                self.startAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, forNum: -19)
+            } else if textField.tag == 2 {
+                self.startAnimate(placeholder: self.passAgainPlaceholder, tf: self.passwordAgainTextField, forNum: -59)
+            }
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            if textField.tag == 0 && !self.emailTextField.hasText {
+                self.stopAnimate(placeholder: self.emailPlaceholder, tf: self.emailTextField, forNum: -65)
+            } else if textField.tag == 1 && !self.passwordTextField.hasText {
+                self.stopAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, forNum: -14)
+            } else if textField.tag == 2 && !self.passwordAgainTextField.hasText {
+                self.stopAnimate(placeholder: self.passAgainPlaceholder, tf: self.passwordAgainTextField, forNum: -55)
+            }
+        }
+    }
+    
 }
 

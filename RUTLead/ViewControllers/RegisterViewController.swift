@@ -10,7 +10,7 @@ import SnapKit
 
 final class RegisterViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     private let titleImageView: UIImageView = {
         let image = UIImageView()
@@ -55,21 +55,32 @@ final class RegisterViewController: UIViewController {
     }()
     
     private let studNumberTextField: UITextField = {
-        let studNumber = CustomTextField(placeHolder: "Номер студенческого билета")
+        let studNumber = CustomTextField(placeHolder: "")
         studNumber.keyboardType = .decimalPad
+        studNumber.tag = 0
         
         return studNumber
     }()
     
+    private let studPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Номер студенческого билета")
+    }()
+    
     private let emailTextField: CustomTextField = {
-        let email = CustomTextField(placeHolder: "Электронная почта")
+        let email = CustomTextField(placeHolder: "")
         email.keyboardType = .emailAddress
+        email.tag = 1
         
         return email
     }()
     
+    private let emailPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Электронная почта")
+    }()
+    
     private let passwordTextField: CustomTextField = {
-        let password = CustomTextField(placeHolder: "Пароль")
+        let password = CustomTextField(placeHolder: "")
+        password.tag = 2
         
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
@@ -86,6 +97,10 @@ final class RegisterViewController: UIViewController {
         password.rightViewMode = .always
         
         return password
+    }()
+    
+    private let passPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Пароль")
     }()
     
     private let registerButton: UIButton = {
@@ -124,7 +139,7 @@ final class RegisterViewController: UIViewController {
         return button
     }()
     
-    // MARK: Methods
+    // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,6 +177,10 @@ final class RegisterViewController: UIViewController {
         [registerButton, loginButton].forEach { content in
             background.addSubview(content)
         }
+        
+        studNumberTextField.addSubview(studPlaceholder)
+        emailTextField.addSubview(emailPlaceholder)
+        passwordTextField.addSubview(passPlaceholder)
     }
     
     private func setUpConstraints() {
@@ -220,6 +239,20 @@ final class RegisterViewController: UIViewController {
             make.top.equalTo(registerButton.snp.bottom).offset(12)
         }
         
+        studPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-108)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
+        emailPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-68)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
+        passPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-19)
+            make.centerY.equalToSuperview().offset(-10)
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -239,25 +272,13 @@ final class RegisterViewController: UIViewController {
         authLabel.textColor = UIColor(named: "titleAuth")
         studNumberTextField.backgroundColor = UIColor(named: "textFieldAuth")
         studNumberTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        studNumberTextField.attributedPlaceholder = NSAttributedString(
-            string: "Номер студенческого билета",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         studNumberTextField.textColor = UIColor(named: "textFieldText")
         emailTextField.textColor = UIColor(named: "textFieldText")
         emailTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         emailTextField.backgroundColor = UIColor(named: "textFieldAuth")
-        emailTextField.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         passwordTextField.textColor = UIColor(named: "textFieldText")
         passwordTextField.backgroundColor = UIColor(named: "textFieldAuth")
         passwordTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        passwordTextField.attributedPlaceholder = NSAttributedString(
-            string: "Пароль повторно",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         registerButton.backgroundColor = UIColor(named: "buttonAuth")
         registerButton.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
         loginButton.backgroundColor = UIColor(named: "backAuth")
@@ -280,6 +301,23 @@ final class RegisterViewController: UIViewController {
         passwordTextField.isSecureTextEntry.toggle()
     }
     
+    private func startAnimate(placeholder: UILabel, tf: UITextField, forNum: Int) {
+        placeholder.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(forNum)
+            make.centerY.equalTo(tf).offset(-23)
+        }
+        self.view.layoutIfNeeded()
+    }
+    
+    private func stopAnimate(placeholder: UILabel, tf: UITextField, forNum: Int) {
+        placeholder.transform = .identity
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(forNum)
+            make.centerY.equalTo(tf).offset(-10)
+        }
+    }
+    
 }
 
 extension RegisterViewController: UITextFieldDelegate {
@@ -287,4 +325,29 @@ extension RegisterViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            if textField.tag == 0 {
+                self.startAnimate(placeholder: self.studPlaceholder, tf: self.studNumberTextField, forNum: -106)
+            } else if textField.tag == 1 {
+                self.startAnimate(placeholder: self.emailPlaceholder, tf: self.emailTextField, forNum: -65)
+            } else if textField.tag == 2 {
+                self.startAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, forNum: -18)
+            }
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            if textField.tag == 0 && !self.studNumberTextField.hasText {
+                self.stopAnimate(placeholder: self.studPlaceholder, tf: self.studNumberTextField, forNum: -107)
+            } else if textField.tag == 1 && !self.emailTextField.hasText {
+                self.stopAnimate(placeholder: self.emailPlaceholder, tf: self.emailTextField, forNum: -68)
+            } else if textField.tag == 2 && !self.passwordTextField.hasText {
+                self.stopAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, forNum: -19)
+            }
+        }
+    }
+    
 }

@@ -23,7 +23,6 @@ final class CustomTextField: UITextField {
     }
     
     private func setUpTextField(_ placeHolder: String?) {
-        
         returnKeyType = .go
         layer.cornerRadius = Helpers.cornerRadius
         textColor = UIColor(named: "textFieldText")

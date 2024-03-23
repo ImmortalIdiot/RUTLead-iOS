@@ -12,19 +12,6 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
-    let label = UILabel()
-    
-    func setUpLabel() {
-        label.text = "Номер студенческого билета"
-        label.textColor = UIColor(named: "placeHolderAuth")
-        label.anchorPoint = CGPoint(x: 0, y: 0)
-        studNumberTextField.addSubview(label)
-        label.snp.makeConstraints { make in
-            make.leading.equalTo(studNumberTextField).offset(-110)
-            make.centerY.equalTo(studNumberTextField).offset(-10)
-        }
-    }
-    
     private let titleImageView: UIImageView = {
         let image = UIImageView()
         
@@ -69,14 +56,20 @@ final class LoginViewController: UIViewController {
     
     private let studNumberTextField: CustomTextField = {
         let studNumber = CustomTextField(placeHolder: "")
+        studNumber.tag = 0
         studNumber.keyboardType = .decimalPad
         
         return studNumber
     }()
     
+    private let studPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Номер студенческого билета")
+    }()
+    
     private let passwordTextField: CustomTextField = {
-        let password = CustomTextField(placeHolder: "Пароль")
+        let password = CustomTextField(placeHolder: "")
         password.isSecureTextEntry = true
+        password.tag = 1
         
         let eye = UIButton(type: .custom)
         eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
@@ -94,7 +87,11 @@ final class LoginViewController: UIViewController {
         
         return password
     }()
-
+    
+    private let passPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Пароль")
+    }()
+    
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(named: "buttonAuth")
@@ -112,16 +109,16 @@ final class LoginViewController: UIViewController {
     private let registerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Нет аккаунта? Зарегистрируйтесь", for: .normal)
-
+        
         let attributedString = NSMutableAttributedString(string: "Нет аккаунта? Зарегистрируйтесь")
         let fullRange = NSRange(location: 0, length: attributedString.length)
         let rangeToUnderline = (attributedString.string as NSString).range(of: "Зарегистрируйтесь")
-
+        
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: fullRange)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
-        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth"), range: rangeToUnderline)
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth")!, range: rangeToUnderline)
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 16), range: rangeToUnderline)
-
+        
         button.setAttributedTitle(attributedString, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(named: "backAuth")
@@ -158,7 +155,6 @@ final class LoginViewController: UIViewController {
         addSubviews()
         setUpConstraints()
         setDelegates()
-        setUpLabel()
     }
     
     private func setUp() {
@@ -183,7 +179,8 @@ final class LoginViewController: UIViewController {
             background.addSubview(content)
         }
         
-        studNumberTextField.addSubview(label)
+        studNumberTextField.addSubview(studPlaceholder)
+        passwordTextField.addSubview(passPlaceholder)
     }
     
     private func setUpConstraints() {
@@ -242,6 +239,16 @@ final class LoginViewController: UIViewController {
             make.top.equalTo(registerButton.snp.bottom).offset(5)
         }
         
+        studPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-108)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
+        passPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-19)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
     }
     
     private func setDelegates() {
@@ -258,7 +265,6 @@ final class LoginViewController: UIViewController {
     private func updateTheme() {
         print("Phone theme has changed.")
         let isLightTheme = Helpers.isLightTheme()
-// todo:
         titleImageView.image = isLightTheme ? .light : .dark
         titleLabel.textColor = UIColor(named: "RUTLead")
         background.backgroundColor = UIColor(named: "backAuth")
@@ -266,18 +272,10 @@ final class LoginViewController: UIViewController {
         authLabel.textColor = UIColor(named: "titleAuth")
         studNumberTextField.backgroundColor = UIColor(named: "textFieldAuth")
         studNumberTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        studNumberTextField.attributedPlaceholder = NSAttributedString(
-            string: "Номер студенческого билета",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         studNumberTextField.textColor = UIColor(named: "textFieldText")
         passwordTextField.textColor = UIColor(named: "textFieldText")
         passwordTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         passwordTextField.backgroundColor = UIColor(named: "textFieldAuth")
-        passwordTextField.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         loginButton.backgroundColor = UIColor(named: "buttonAuth")
         loginButton.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
         registerButton.backgroundColor = UIColor(named: "backAuth")
@@ -292,7 +290,7 @@ final class LoginViewController: UIViewController {
     }
     
     @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-       view.endEditing(true)
+        view.endEditing(true)
     }
     
     @objc private func forgotPassTapped() {
@@ -304,8 +302,25 @@ final class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry.toggle()
     }
     
+    private func startAnimate(placeholder: UILabel, tf: UITextField, fl: Bool = false) {
+        placeholder.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(fl ? -19 : -107)
+            make.centerY.equalTo(tf).offset(-23)
+        }
+        self.view.layoutIfNeeded()
+    }
+    
+    private func stopAnimate(placeholder: UILabel, tf: UITextField, fl: Bool = false) {
+        placeholder.transform = .identity
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(fl ? -19 : -107)
+            make.centerY.equalTo(tf).offset(-10)
+        }
+    }
+    
 }
-
+    
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -314,24 +329,22 @@ extension LoginViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.1) {
-            self.label.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-            self.label.snp.updateConstraints { make in
-                make.leading.equalTo(self.studNumberTextField).offset(-110)
-                make.centerY.equalTo(self.studNumberTextField).offset(-24)
+            if textField.tag == 0 {
+                self.startAnimate(placeholder: self.studPlaceholder, tf: self.studNumberTextField)
+            } else if textField.tag == 1 {
+                self.startAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, fl: true)
             }
-            self.view.layoutIfNeeded()
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.1) {
-            if !self.studNumberTextField.hasText {
-                self.label.transform = .identity
-                self.label.snp.updateConstraints { make in
-                    make.leading.equalTo(self.studNumberTextField).offset(-110)
-                    make.centerY.equalTo(self.studNumberTextField).offset(-10)
-                }
+            if textField.tag == 0 && !self.studNumberTextField.hasText {
+                self.stopAnimate(placeholder: self.studPlaceholder, tf: self.studNumberTextField)
+            } else if textField.tag == 1 && !self.passwordTextField.hasText {
+                self.stopAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, fl: true)
             }
         }
     }
+    
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E086D0D2B9F799C00CC1D8B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */; };
 		8E36A8112B8FA09B001DC479 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E36A8102B8FA09B001DC479 /* Helpers.swift */; };
+		8E432BC02BAD649A0074B089 /* CustomPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E432BBF2BAD649A0074B089 /* CustomPlaceholder.swift */; };
 		8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */; };
 		8E7D25C52B903D150042FF61 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C42B903D150042FF61 /* JournalViewController.swift */; };
 		8E7D25C72B903D4B0042FF61 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C62B903D4B0042FF61 /* ProfileViewController.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8E36A8102B8FA09B001DC479 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		8E432BBF2BAD649A0074B089 /* CustomPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlaceholder.swift; sourceTree = "<group>"; };
 		8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		8E7D25C42B903D150042FF61 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		8E7D25C62B903D4B0042FF61 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -124,8 +126,8 @@
 				8E8B65FE2B88DE8B00B7BD58 /* Application */,
 				8E8B66032B88DF9500B7BD58 /* Resources */,
 				8E086D0B2B9F797800CC1D8B /* Models */,
-				8EC2ABEF2BACC5C1006198F8 /* Custom */,
 				8E8B65FF2B88DE9700B7BD58 /* ViewControllers */,
+				8EC2ABEF2BACC5C1006198F8 /* Custom */,
 			);
 			path = RUTLead;
 			sourceTree = "<group>";
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */,
+				8E432BBF2BAD649A0074B089 /* CustomPlaceholder.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E432BC02BAD649A0074B089 /* CustomPlaceholder.swift in Sources */,
 				8EE8B2CD2BACBA35003A4F8F /* CustomTextField.swift in Sources */,
 				8E7D25C52B903D150042FF61 /* JournalViewController.swift in Sources */,
 				8EC1E47E2B87C84800FAE89F /* LoginViewController.swift in Sources */,

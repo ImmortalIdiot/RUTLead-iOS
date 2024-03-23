@@ -10,7 +10,7 @@ import SnapKit
 
 final class ProfileViewController: UIViewController {
 
-    // MARK: Properties
+    // MARK: - Properties
     
     private let mainTitle: UILabel = {
         let label = UILabel()
@@ -156,7 +156,7 @@ final class ProfileViewController: UIViewController {
         return button
     }()
 
-    // MARK: Methods
+    // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()

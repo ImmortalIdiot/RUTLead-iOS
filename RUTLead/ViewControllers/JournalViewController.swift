@@ -11,7 +11,7 @@ import FSCalendar
 
 final class JournalViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     private var mainTitle: UILabel = {
         let label = UILabel()
@@ -75,7 +75,7 @@ final class JournalViewController: UIViewController {
         return label
     }()
         
-    // MARK: Methods
+    // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()

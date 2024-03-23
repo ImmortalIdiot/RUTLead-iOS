@@ -55,11 +55,25 @@ final class SecondRegisterViewController: UIViewController {
     }()
     
     private let fioTextField: UITextField = {
-        CustomTextField(placeHolder: "ФИО")
+        let fio = CustomTextField(placeHolder: "")
+        fio.tag = 0
+        
+        return fio
+    }()
+    
+    private let fioPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "ФИО")
     }()
     
     private let groupTextField: UITextField = {
-        CustomTextField(placeHolder: "Группа (УВП-212)")
+        let group = CustomTextField(placeHolder: "")
+        group.tag = 1
+        
+        return group
+    }()
+    
+    private let groupPlaceholder: CustomPlaceholder = {
+        CustomPlaceholder(text: "Группа (УВП-212)")
     }()
 
     private let enterButton: UIButton = {
@@ -86,7 +100,7 @@ final class SecondRegisterViewController: UIViewController {
 
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 16), range: fullRange)
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: rangeToUnderline)
-        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth"), range: rangeToUnderline)
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(named: "titleAuth")!, range: rangeToUnderline)
         attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 16), range: rangeToUnderline)
 
         button.setAttributedTitle(attributedString, for: .normal)
@@ -130,6 +144,9 @@ final class SecondRegisterViewController: UIViewController {
         [enterButton, loginButton].forEach { content in
             background.addSubview(content)
         }
+        
+        fioTextField.addSubview(fioPlaceholder)
+        groupTextField.addSubview(groupPlaceholder)
     }
     
     private func setUpConstraints() {
@@ -183,6 +200,16 @@ final class SecondRegisterViewController: UIViewController {
             make.top.equalTo(enterButton.snp.bottom).offset(20)
         }
         
+        fioPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
+        groupPlaceholder.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(-60)
+            make.centerY.equalToSuperview().offset(-10)
+        }
+        
     }
     
     private func setDelegates() {
@@ -207,17 +234,9 @@ final class SecondRegisterViewController: UIViewController {
         authLabel.textColor = UIColor(named: "titleAuth")
         fioTextField.backgroundColor = UIColor(named: "textFieldAuth")
         fioTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
-        fioTextField.attributedPlaceholder = NSAttributedString(
-            string: "Номер студенческого билета",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         fioTextField.textColor = UIColor(named: "textFieldText")
         groupTextField.layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         groupTextField.backgroundColor = UIColor(named: "textFieldAuth")
-        groupTextField.attributedPlaceholder = NSAttributedString(
-            string: "Пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")]
-        )
         groupTextField.textColor = UIColor(named: "textFieldText")
         enterButton.backgroundColor = UIColor(named: "buttonAuth")
         enterButton.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
@@ -236,6 +255,23 @@ final class SecondRegisterViewController: UIViewController {
        view.endEditing(true)
     }
     
+    private func startAnimate(placeholder: UILabel, tf: UITextField, forNum: Int) {
+        placeholder.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(forNum)
+            make.centerY.equalTo(tf).offset(-23)
+        }
+        self.view.layoutIfNeeded()
+    }
+    
+    private func stopAnimate(placeholder: UILabel, tf: UITextField, forNum: Int) {
+        placeholder.transform = .identity
+        placeholder.snp.updateConstraints { make in
+            make.leading.equalTo(tf).offset(forNum)
+            make.centerY.equalTo(tf).offset(-10)
+        }
+    }
+    
 }
 
 extension SecondRegisterViewController: UITextFieldDelegate {
@@ -243,4 +279,25 @@ extension SecondRegisterViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            if textField.tag == 0 {
+                self.startAnimate(placeholder: self.fioPlaceholder, tf: self.fioTextField, forNum: -9)
+            } else if textField.tag == 1 {
+                self.startAnimate(placeholder: self.groupPlaceholder, tf: self.groupTextField, forNum: -60)
+            }
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.1) {
+            if textField.tag == 0 && !self.fioTextField.hasText {
+                self.stopAnimate(placeholder: self.fioPlaceholder, tf: self.fioTextField, forNum: -8)
+            } else if textField.tag == 1 && !self.groupTextField.hasText {
+                self.stopAnimate(placeholder: self.groupPlaceholder, tf: self.groupTextField, forNum: -60)
+            }
+        }
+    }
+    
 }
