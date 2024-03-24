@@ -55,11 +55,7 @@ final class ResetPasswordViewController: UIViewController {
     }()
     
     private let emailTextField: CustomTextField = {
-        let email = CustomTextField(placeHolder: "")
-        email.keyboardType = .emailAddress
-        email.tag = 0
-        
-        return email
+        CustomTextField(boardType: .emailAddress, tag: 0)
     }()
     
     private let emailPlaceholder: CustomPlaceholder = {
@@ -67,16 +63,10 @@ final class ResetPasswordViewController: UIViewController {
     }()
     
     private let passwordTextField: UITextField = {
-        let password = CustomTextField(placeHolder: "")
-        password.isSecureTextEntry = true
-        password.tag = 1
+        let password = CustomTextField(tag: 1, isSecure: true)
         
-        let eye = UIButton(type: .custom)
-        eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
-        eye.setImage(.init(systemName: "eye.fill"), for: .selected)
-        eye.imageView?.tintColor = Colors.blueTabBar
+        let eye = CustomEye()
         eye.addTarget(self, action: #selector(eyeTapped), for: .touchUpInside)
-        eye.frame = CGRect(x: 0, y: 0, width: 45, height: 20)
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 46, height: 20))
         eye.center = view.center
@@ -93,16 +83,10 @@ final class ResetPasswordViewController: UIViewController {
     }()
     
     private let passwordAgainTextField: UITextField = {
-        let password = CustomTextField(placeHolder: "")
-        password.isSecureTextEntry = true
-        password.tag = 2
+        let password = CustomTextField(tag: 2, isSecure: true)
         
-        let eye = UIButton(type: .custom)
-        eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
-        eye.setImage(.init(systemName: "eye.fill"), for: .selected)
-        eye.imageView?.tintColor = Colors.blueTabBar
+        let eye = CustomEye()
         eye.addTarget(self, action: #selector(eyeSecTapped), for: .touchUpInside)
-        eye.frame = CGRect(x: 0, y: 0, width: 45, height: 20)
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 46, height: 20))
         eye.center = view.center
@@ -363,11 +347,11 @@ extension ResetPasswordViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.1) {
             if textField.tag == 0 && !self.emailTextField.hasText {
-                self.stopAnimate(placeholder: self.emailPlaceholder, tf: self.emailTextField, forNum: -65)
+                self.stopAnimate(placeholder: self.emailPlaceholder, tf: self.emailTextField, forNum: -67)
             } else if textField.tag == 1 && !self.passwordTextField.hasText {
-                self.stopAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, forNum: -14)
+                self.stopAnimate(placeholder: self.passPlaceholder, tf: self.passwordTextField, forNum: -19)
             } else if textField.tag == 2 && !self.passwordAgainTextField.hasText {
-                self.stopAnimate(placeholder: self.passAgainPlaceholder, tf: self.passwordAgainTextField, forNum: -55)
+                self.stopAnimate(placeholder: self.passAgainPlaceholder, tf: self.passwordAgainTextField, forNum: -59)
             }
         }
     }

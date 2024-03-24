@@ -55,11 +55,7 @@ final class RegisterViewController: UIViewController {
     }()
     
     private let studNumberTextField: UITextField = {
-        let studNumber = CustomTextField(placeHolder: "")
-        studNumber.keyboardType = .decimalPad
-        studNumber.tag = 0
-        
-        return studNumber
+        CustomTextField(boardType: .decimalPad, tag: 0)
     }()
     
     private let studPlaceholder: CustomPlaceholder = {
@@ -67,11 +63,7 @@ final class RegisterViewController: UIViewController {
     }()
     
     private let emailTextField: CustomTextField = {
-        let email = CustomTextField(placeHolder: "")
-        email.keyboardType = .emailAddress
-        email.tag = 1
-        
-        return email
+        CustomTextField(boardType: .emailAddress, tag: 1)
     }()
     
     private let emailPlaceholder: CustomPlaceholder = {
@@ -79,15 +71,10 @@ final class RegisterViewController: UIViewController {
     }()
     
     private let passwordTextField: CustomTextField = {
-        let password = CustomTextField(placeHolder: "")
-        password.tag = 2
+        let password = CustomTextField(tag: 2, isSecure: true)
         
-        let eye = UIButton(type: .custom)
-        eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
-        eye.setImage(.init(systemName: "eye.fill"), for: .selected)
-        eye.imageView?.tintColor = Colors.blueTabBar
+        let eye = CustomEye()
         eye.addTarget(self, action: #selector(eyeTapped), for: .touchUpInside)
-        eye.frame = CGRect(x: 0, y: 0, width: 45, height: 20)
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 46, height: 20))
         eye.center = view.center

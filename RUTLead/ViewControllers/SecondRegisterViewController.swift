@@ -55,10 +55,7 @@ final class SecondRegisterViewController: UIViewController {
     }()
     
     private let fioTextField: UITextField = {
-        let fio = CustomTextField(placeHolder: "")
-        fio.tag = 0
-        
-        return fio
+        CustomTextField(tag: 0)
     }()
     
     private let fioPlaceholder: CustomPlaceholder = {
@@ -66,10 +63,7 @@ final class SecondRegisterViewController: UIViewController {
     }()
     
     private let groupTextField: UITextField = {
-        let group = CustomTextField(placeHolder: "")
-        group.tag = 1
-        
-        return group
+        CustomTextField(tag: 1)
     }()
     
     private let groupPlaceholder: CustomPlaceholder = {

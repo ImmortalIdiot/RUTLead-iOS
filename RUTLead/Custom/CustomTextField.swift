@@ -11,10 +11,10 @@ final class CustomTextField: UITextField {
     
     private let padding = UIEdgeInsets(top: 0, left: 11, bottom: 0, right: 0)
     
-    init(placeHolder: String) {
+    init(boardType: UIKeyboardType = .default, tag: Int, isSecure: Bool = false) {
         super.init(frame: .zero)
         
-        setUpTextField(placeHolder)
+        setUpTextField(boardType, tag: tag, isSecure: isSecure)
     }
     
     @available(*, unavailable)
@@ -22,20 +22,16 @@ final class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpTextField(_ placeHolder: String?) {
+    private func setUpTextField(_ boardType: UIKeyboardType, tag: Int, isSecure: Bool) {
+        self.tag = tag
+        isSecureTextEntry = isSecure
+        keyboardType = boardType
         returnKeyType = .go
         layer.cornerRadius = Helpers.cornerRadius
         textColor = UIColor(named: "textFieldText")
         backgroundColor = UIColor(named: "textFieldAuth")
         layer.borderColor = UIColor(named: "textFieldBorderAuth")?.cgColor
         layer.borderWidth = 3
-        
-        if let placeHolder = placeHolder {
-            attributedPlaceholder = NSAttributedString(
-                string: placeHolder,
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderAuth")!]
-            )
-        }
         
         heightAnchor.constraint(equalToConstant: 60).isActive = true
         widthAnchor.constraint(equalToConstant: 280).isActive = true

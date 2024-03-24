@@ -55,11 +55,7 @@ final class LoginViewController: UIViewController {
     }()
     
     private let studNumberTextField: CustomTextField = {
-        let studNumber = CustomTextField(placeHolder: "")
-        studNumber.tag = 0
-        studNumber.keyboardType = .decimalPad
-        
-        return studNumber
+        CustomTextField(boardType: .decimalPad, tag: 0)
     }()
     
     private let studPlaceholder: CustomPlaceholder = {
@@ -67,16 +63,10 @@ final class LoginViewController: UIViewController {
     }()
     
     private let passwordTextField: CustomTextField = {
-        let password = CustomTextField(placeHolder: "")
-        password.isSecureTextEntry = true
-        password.tag = 1
+        let password = CustomTextField(tag: 1, isSecure: true)
         
-        let eye = UIButton(type: .custom)
-        eye.setImage(.init(systemName: "eye.slash.fill"), for: .normal)
-        eye.setImage(.init(systemName: "eye.fill"), for: .selected)
-        eye.imageView?.tintColor = Colors.blueTabBar
+        let eye = CustomEye()
         eye.addTarget(self, action: #selector(eyeTapped), for: .touchUpInside)
-        eye.frame = CGRect(x: 0, y: 0, width: 45, height: 20)
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 46, height: 20))
         eye.center = view.center
