@@ -8,7 +8,7 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,25 +17,30 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func setUp() {
+        view.backgroundColor = .white
+        
         tabBar.backgroundColor = .white
-        tabBar.barStyle = .default
-        tabBar.tintColor = .none
+        tabBar.tintColor = Colors.blueTabBar
         tabBar.layer.borderWidth = 2
         tabBar.layer.cornerRadius = Helpers.cornerRadius
         tabBar.layer.borderColor = Colors.placeHolder.cgColor
+        
+        tabBar.items?.forEach({ item in
+            item.titlePositionAdjustment = UIOffset(horizontal: 14, vertical: 14)
+        })
     }
     
     private func generateTabBar() {
         viewControllers = [
-            generateVC(vc: JournalViewController(), image: UIImage(named: "journalOff"), selectedImage: "journalOn"),
-            generateVC(vc: ProfileViewController(), image: UIImage(named: "profileOff"), selectedImage: "profileOn"),
+            generateVC(vc: JournalViewController(), image: "tab", title: "Журнал"),
+            generateVC(vc: ProfileViewController(), image:  "prof", title: "Профиль")
         ]
     }
     
-    private func generateVC(vc: UIViewController, image: UIImage?, selectedImage: String) -> UIViewController {
-        vc.tabBarItem.image = image
-        vc.tabBarItem.selectedImage = UIImage(named: selectedImage)
-        vc.tabBarItem.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
+    private func generateVC(vc: UIViewController, image: String, title: String) -> UIViewController {
+        vc.tabBarItem.image = UIImage(named: image)
+        vc.title = title
+        vc.tabBarItem.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: 5, right: 0)
         
         return vc
     }

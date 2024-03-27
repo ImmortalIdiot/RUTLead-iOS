@@ -24,6 +24,7 @@
 		8EC1E4862B87C84900FAE89F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EC1E4842B87C84900FAE89F /* LaunchScreen.storyboard */; };
 		8ECCB2732B9CC343000371BB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8ECCB2722B9CC343000371BB /* FSCalendar */; };
 		8EE5612B2BAFE6D8000D42A6 /* CustomEye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5612A2BAFE6D8000D42A6 /* CustomEye.swift */; };
+		8EE5612D2BAFE8E7000D42A6 /* CustomEnterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5612C2BAFE8E7000D42A6 /* CustomEnterButton.swift */; };
 		8EE8B2CD2BACBA35003A4F8F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */; };
 		8EFDF5D62BA8BF6E0019C16A /* SecondRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFDF5D52BA8BF6E0019C16A /* SecondRegisterViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		8EC1E4852B87C84900FAE89F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EC1E4872B87C84900FAE89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EE5612A2BAFE6D8000D42A6 /* CustomEye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEye.swift; sourceTree = "<group>"; };
+		8EE5612C2BAFE8E7000D42A6 /* CustomEnterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEnterButton.swift; sourceTree = "<group>"; };
 		8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		8EFDF5D52BA8BF6E0019C16A /* SecondRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 				8EE8B2CC2BACBA35003A4F8F /* CustomTextField.swift */,
 				8E432BBF2BAD649A0074B089 /* CustomPlaceholder.swift */,
 				8EE5612A2BAFE6D8000D42A6 /* CustomEye.swift */,
+				8EE5612C2BAFE8E7000D42A6 /* CustomEnterButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				8E36A8112B8FA09B001DC479 /* Helpers.swift in Sources */,
 				8E87C3D22BAB5651009A819A /* ResetPasswordViewController.swift in Sources */,
 				8E8B66072B8CFC1400B7BD58 /* RegisterViewController.swift in Sources */,
+				8EE5612D2BAFE8E7000D42A6 /* CustomEnterButton.swift in Sources */,
 				8E8B66052B88E33100B7BD58 /* Colors.swift in Sources */,
 				8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */,
 				8E7D25C72B903D4B0042FF61 /* ProfileViewController.swift in Sources */,

@@ -8,7 +8,8 @@
 import UIKit
 
 class CustomEye: UIButton {
-    override init(frame: CGRect) {
+    
+    init() {
         super.init(frame: .zero)
         
         setUpEye()

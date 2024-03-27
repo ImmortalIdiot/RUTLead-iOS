@@ -103,14 +103,7 @@ final class ResetPasswordViewController: UIViewController {
     }()
     
     private let changeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(named: "buttonAuth")
-        button.layer.cornerRadius = Helpers.cornerRadius
-        button.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
-        button.layer.borderWidth = 3
-        button.setTitle("Сменить", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 23, weight: .bold)
-        button.setTitleColor(.white, for: .normal)
+        let button = CustomEnterButton(title: "Сменить")
         button.addTarget(self, action: #selector(changeTapped), for: .touchUpInside)
         
         return button

@@ -83,17 +83,11 @@ final class LoginViewController: UIViewController {
     }()
     
     private let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(named: "buttonAuth")
-        button.layer.cornerRadius = Helpers.cornerRadius
-        button.layer.borderColor = UIColor(named: "buttonBorderAuth")?.cgColor
-        button.layer.borderWidth = 3
-        button.setTitle("Войти", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 23, weight: .bold)
-        button.setTitleColor(.white, for: .normal)
+        let button = CustomEnterButton(title: "Войти")
         button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         
         return button
+        
     }()
     
     private let registerButton: UIButton = {
