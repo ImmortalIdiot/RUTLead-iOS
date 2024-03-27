@@ -13,15 +13,6 @@ final class JournalViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var mainTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Журнал"
-        label.textColor = Colors.placeHolder
-        label.font = .systemFont(ofSize: 32, weight: .bold)
-        
-        return label
-    }()
-    
     private var arrow: UIView = {
         let view = UIView()
         view.backgroundColor = Colors.placeHolder
@@ -93,20 +84,14 @@ final class JournalViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(mainTitle)
         view.addSubview(calendar)
         calendar.addSubview(arrow)
         view.addSubview(disciplinesTitle)
     }
     
     private func setUpConstraints() {
-        mainTitle.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.leading.equalToSuperview().offset(24)
-        }
-        
         calendar.snp.makeConstraints { make in
-            make.top.equalTo(mainTitle.snp.bottom).offset(40)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.leading.equalToSuperview().inset(10)
             make.trailing.equalToSuperview().inset(10)
             make.height.equalTo(300)

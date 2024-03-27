@@ -11,16 +11,7 @@ import SnapKit
 final class ProfileViewController: UIViewController {
 
     // MARK: - Properties
-    
-    private let mainTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Профиль"
-        label.textColor = Colors.placeHolder
-        label.font = .systemFont(ofSize: 32, weight: .bold)
         
-        return label
-    }()
-    
     private let background: UIView = {
         let back = UIView()
         back.backgroundColor = Colors.blueTabBar
@@ -173,7 +164,6 @@ final class ProfileViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(mainTitle)
         view.addSubview(background)
         view.addSubview(changeGroupButton)
         view.addSubview(deleteAccountButton)
@@ -191,14 +181,9 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setUpConstraints() {
-        mainTitle.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.leading.equalToSuperview().offset(24)
-        }
-        
         background.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(19)
-            make.top.equalTo(mainTitle.snp.bottom).offset(40)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.height.equalTo(313)
         }
         
