@@ -41,9 +41,10 @@ final class ProfileViewController: UIViewController {
     
     private let userFIO: UILabel = {
         let fio = UILabel()
-        fio.text = "Иванов Александр Дмитриевич"
-        fio.font = .systemFont(ofSize: 17, weight: .bold)
-        fio.textColor = UIColor(named: "mainBackAuth")
+        fio.text = "Иванов Александр\nДмитриевич"
+        fio.font = .systemFont(ofSize: 18, weight: .bold)
+        fio.textColor = .white
+        fio.textAlignment = .center
         fio.numberOfLines = 0
         
         return fio
@@ -52,7 +53,7 @@ final class ProfileViewController: UIViewController {
     private let userGroup: UILabel = {
         let group = UILabel()
         group.text = "Студент группы УВП-212"
-        group.font = .systemFont(ofSize: 13, weight: .bold)
+        group.font = .systemFont(ofSize: 14, weight: .bold)
         group.textColor = .white
         
         return group
@@ -159,25 +160,20 @@ final class ProfileViewController: UIViewController {
     
     private func setUp() {
         view.backgroundColor = .white
-        
-        ThemeManager.shared.applyTheme()
     }
     
     private func addSubviews() {
-        view.addSubview(background)
-        view.addSubview(changeGroupButton)
-        view.addSubview(deleteAccountButton)
-        
-        background.addSubview(signOutButton)
-        
-        [userPhoto, userFIO, userGroup].forEach { maker in
-            background.addSubview(maker)
+        [background, changeGroupButton, deleteAccountButton].forEach { make in
+            view.addSubview(make)
         }
-        
-        background.addSubview(stackViewButtons)
-        stackViewButtons.addArrangedSubview(autoThemeButton)
-        stackViewButtons.addArrangedSubview(lightThemeButton)
-        stackViewButtons.addArrangedSubview(darkThemeButton)
+                
+        [signOutButton, userPhoto, userFIO, userGroup, stackViewButtons].forEach { make in
+            background.addSubview(make)
+        }
+                
+        [autoThemeButton, lightThemeButton, darkThemeButton].forEach { make in
+            stackViewButtons.addArrangedSubview(make)
+        }
     }
     
     private func setUpConstraints() {
@@ -189,7 +185,7 @@ final class ProfileViewController: UIViewController {
         
         userPhoto.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(50)
+            make.top.equalToSuperview().offset(40)
             make.width.height.equalTo(86)
         }
         
@@ -201,6 +197,13 @@ final class ProfileViewController: UIViewController {
         userGroup.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(userFIO.snp.bottom).offset(10)
+        }
+        
+        stackViewButtons.snp.makeConstraints { make in
+            make.top.equalTo(userGroup.snp.bottom).offset(28)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(55)
+            make.width.equalTo(270)
         }
         
         changeGroupButton.snp.makeConstraints { make in
@@ -218,13 +221,6 @@ final class ProfileViewController: UIViewController {
         signOutButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(19)
             make.top.equalToSuperview().offset(15)
-        }
-        
-        stackViewButtons.snp.makeConstraints { make in
-            make.top.equalTo(userGroup.snp.bottom).offset(38)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(55)
-            make.width.equalTo(270)
         }
     }
     
@@ -301,24 +297,14 @@ final class ProfileViewController: UIViewController {
                 deselectButton(but)
             }
         }
-        
-        if Helpers.isLightTheme() {
-            ThemeManager.shared.currentTheme = .dark
-        } else {
-            ThemeManager.shared.currentTheme = .light
-        }
     }
     
     @objc private func lightThemeButtonTapped(_ sender: UIButton) {
         autoThemeButtonTapped(sender)
-        
-        ThemeManager.shared.currentTheme = .light
     }
     
     @objc private func darkThemeButtonTapped(_ sender: UIButton) {
         autoThemeButtonTapped(sender)
-        
-        ThemeManager.shared.currentTheme = .dark
     }
     
     @objc private func signOutButtonTapped(_ sender: UIButton) {

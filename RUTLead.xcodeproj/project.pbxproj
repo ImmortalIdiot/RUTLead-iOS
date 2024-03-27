@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E086D0D2B9F799C00CC1D8B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */; };
 		8E36A8112B8FA09B001DC479 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E36A8102B8FA09B001DC479 /* Helpers.swift */; };
 		8E432BC02BAD649A0074B089 /* CustomPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E432BBF2BAD649A0074B089 /* CustomPlaceholder.swift */; };
 		8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */; };
@@ -30,7 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8E36A8102B8FA09B001DC479 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		8E432BBF2BAD649A0074B089 /* CustomPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlaceholder.swift; sourceTree = "<group>"; };
 		8E7D25C22B903CE80042FF61 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 		8E086D0B2B9F797800CC1D8B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8E086D0C2B9F799C00CC1D8B /* ThemeManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,7 +233,6 @@
 				8E8B66052B88E33100B7BD58 /* Colors.swift in Sources */,
 				8E7D25C32B903CE80042FF61 /* TabBarViewController.swift in Sources */,
 				8E7D25C72B903D4B0042FF61 /* ProfileViewController.swift in Sources */,
-				8E086D0D2B9F799C00CC1D8B /* ThemeManager.swift in Sources */,
 				8EE5612B2BAFE6D8000D42A6 /* CustomEye.swift in Sources */,
 				8EFDF5D62BA8BF6E0019C16A /* SecondRegisterViewController.swift in Sources */,
 				8EC1E47A2B87C84800FAE89F /* AppDelegate.swift in Sources */,
